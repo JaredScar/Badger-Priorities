@@ -18,43 +18,53 @@ end)
 RegisterCommand("resetpcd", function(source, args, rawCommand)
   -- /resetpcd
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.ResetPCD") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then
+  if IsPlayerAceAllowed(src, "Badger-Priorities.ResetPCD") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then
     onHold = false;
     inProgress = false;
     currentCooldownTime = 0;
     local display = Config.Options.CooldownDisplay:gsub("{MINS}", currentCooldownTime);
     TriggerClientEvent('Badger-Priorities:DrawText', -1, display)
-    msg(src, 'You have reset the priority cooldown...');
+    if src > 0 then 
+      msg(src, 'You have reset the priority cooldown...');
+    else 
+      print("You have reset the priority cooldown...");
+    end
   end
 end)
 RegisterCommand("inprogress", function(source, args, rawCommand)
   -- /inprogress 
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.InProgress") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then
+  if IsPlayerAceAllowed(src, "Badger-Priorities.InProgress") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then
     onHold = false;
     inProgress = true;
     currentCooldownTime = 0;
     --msg(src, 'There is a priority in progress...');
     TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.InProgressDisplay:gsub("{MINS}", currentCooldownTime))
     msg(-1, Config.Messages.InProgressMessage) 
+    if src <= 0 then 
+      print(Config.Messages.InProgressMessage)
+    end
   end
 end)
 RegisterCommand("onhold", function(source, args, rawCommand)
   -- /onhold 
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.OnHold") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then
+  if IsPlayerAceAllowed(src, "Badger-Priorities.OnHold") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then
     inProgress = false;
     onHold = true  
     currentCooldownTime = 0;
     --msg(src, 'The priorities have been set on hold...');
     TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.OnHoldDisplay:gsub("{MINS}", currentCooldownTime))
     msg(-1, Config.Messages.OnHoldMessage)
+    if src <= 0 then 
+      print(Config.Messages.OnHoldMessage)
+    end
   end
 end)
 RegisterCommand("cooldown", function(source, args, rawCommand)
   -- /cooldown <time>
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.Cooldown") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then 
+  if IsPlayerAceAllowed(src, "Badger-Priorities.Cooldown") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then 
     if #args > 0 then 
       -- Check if number 
       if tonumber(args[1]) ~= nil then 
@@ -65,7 +75,12 @@ RegisterCommand("cooldown", function(source, args, rawCommand)
         --msg(src, 'The cooldown has been set to ^7' .. args[1] .. ' ^3minutes...');
         local display = Config.Options.CooldownDisplay:gsub("{MINS}", currentCooldownTime);
         TriggerClientEvent('Badger-Priorities:DrawText', -1, display)
-        msg(-1, Config.Messages.CooldownMessage:gsub("{MINS}", args[1]));
+        if src > 0 then 
+          msg(-1, Config.Messages.CooldownMessage:gsub("{MINS}", args[1]));
+        else 
+          msg(-1, Config.Messages.CooldownMessage:gsub("{MINS}", args[1]));
+          print(Config.Messages.CooldownMessage:gsub("{MINS}", args[1]))
+        end
       else 
         -- Not a number 
         msg(src, '^1ERROR: That is not a valid number');
