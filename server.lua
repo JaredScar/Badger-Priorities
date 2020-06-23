@@ -18,7 +18,7 @@ end)
 RegisterCommand("resetpcd", function(source, args, rawCommand)
   -- /resetpcd
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.ResetPCD") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then
+  if src <= 0 or IsPlayerAceAllowed(src, "Badger-Priorities.ResetPCD") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then
     onHold = false;
     inProgress = false;
     currentCooldownTime = 0;
@@ -34,7 +34,7 @@ end)
 RegisterCommand("inprogress", function(source, args, rawCommand)
   -- /inprogress 
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.InProgress") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then
+  if src <= 0 or IsPlayerAceAllowed(src, "Badger-Priorities.InProgress") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then
     onHold = false;
     inProgress = true;
     currentCooldownTime = 0;
@@ -49,7 +49,7 @@ end)
 RegisterCommand("onhold", function(source, args, rawCommand)
   -- /onhold 
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.OnHold") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then
+  if src <= 0 or IsPlayerAceAllowed(src, "Badger-Priorities.OnHold") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then
     inProgress = false;
     onHold = true  
     currentCooldownTime = 0;
@@ -64,7 +64,7 @@ end)
 RegisterCommand("cooldown", function(source, args, rawCommand)
   -- /cooldown <time>
   local src = source;
-  if IsPlayerAceAllowed(src, "Badger-Priorities.Cooldown") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") or src <= 0 then 
+  if src <= 0 or IsPlayerAceAllowed(src, "Badger-Priorities.Cooldown") or IsPlayerAceAllowed(src, "Badger-Priorities.Commands") then 
     if #args > 0 then 
       -- Check if number 
       if tonumber(args[1]) ~= nil then 
