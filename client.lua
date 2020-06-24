@@ -27,14 +27,21 @@ RegisterNetEvent('Badger-Priorities:TriggerTrue')
 AddEventHandler('Badger-Priorities:TriggerTrue', function()
 	drawFast = true 
 end)
+hideDisplays = false;
+RegisterNetEvent('Badger-Priorities:HideDisplay')
+AddEventHandler('Badger-Priorities:HideDisplay', function()
+	hideDisplays = not hideDisplays;
+end)
 displayCooldown = 0;
 Citizen.CreateThread(function()
 	while true do 
 		Wait(0);
 		local x = Config.DisplayLocation.x;
 		local y = Config.DisplayLocation.y;
-		if #drawText > 1 then 
-			Draw2DText(x, y, drawText, 0.5);
+		if not hideDisplays then 
+			if #drawText > 1 then 
+				Draw2DText(x, y, drawText, 0.5);
+			end 
 		end 
 		if drawFast then 
 			Draw2DText(.5, .5, Config.Options.TooFastDisplay, 1.0)
