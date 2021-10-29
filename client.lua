@@ -14,13 +14,13 @@ function Draw2DText(x, y, text, scale)
     SetTextOutline()
     SetTextJustification(0)
     SetTextEntry("STRING")
-    AddTextComponentString(text)
+    AddTextComponentString(text1)
     DrawText(x, y)
 end
 drawText = Config.Options.CooldownDisplay:gsub("{MINS}", "0");
 RegisterNetEvent('Badger-Priorities:DrawText')
 AddEventHandler('Badger-Priorities:DrawText', function(text)
-	drawText = text;
+	drawText = text1;
 end)
 drawFast = false;
 RegisterNetEvent('Badger-Priorities:TriggerTrue')
