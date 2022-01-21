@@ -43,10 +43,10 @@ Citizen.CreateThread(function()
 				Draw2DText(x, y, drawText, 0.5);
 			end 
 		end 
-		if drawFast then 
-			Draw2DText(.5, .5, Config.Options.TooFastDisplay, 1.0)
-		end
 		if Config.Options.EnableSpeedMessage then 
+			if drawFast then 
+				Draw2DText(.5, .5, Config.Options.TooFastDisplay, 1.0)
+			end
 			local ped = GetPlayerPed(-1);
 			local veh = GetVehiclePedIsIn(ped, 0);
 			if veh ~= nil then 
