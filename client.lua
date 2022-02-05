@@ -2,6 +2,17 @@
 --- Badger-Priorities ---
 -------------------------
 
+inprogress = false;
+onhold = false;
+currentCooldownTime = 0;
+
+RegisterNetEvent('Badger-Priorities:Update')
+AddEventHandler('Badger-Priorities:Update', function(inp, onh, curr)
+	inprogress = inp;
+	onhold = onh;
+	currentCooldownTime = curr;
+end)
+
 function Draw2DText(x, y, text, scale)
     -- Draw text on screen
     SetTextFont(4)
@@ -23,10 +34,6 @@ AddEventHandler('Badger-Priorities:DrawText', function(text)
 	drawText = text;
 end)
 drawFast = false;
-RegisterNetEvent('Badger-Priorities:TriggerTrue')
-AddEventHandler('Badger-Priorities:TriggerTrue', function()
-	drawFast = true 
-end)
 hideDisplays = false;
 RegisterNetEvent('Badger-Priorities:HideDisplay')
 AddEventHandler('Badger-Priorities:HideDisplay', function()
@@ -57,7 +64,9 @@ Citizen.CreateThread(function()
 					if speed >= 80 then 
 						-- Too fast if we are on cooldown
 						if displayCooldown <= 2000 then 
-							TriggerServerEvent('Badger-Priorities:TriggerCheck')
+							if inProgess or onHold or (currentCooldownTime > 0) then 
+								drawFast = true;
+							end
 						else 
 							drawFast = false;
 						end
