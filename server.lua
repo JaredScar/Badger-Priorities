@@ -143,7 +143,7 @@ Citizen.CreateThread(function()
           TriggerClientEvent('Badger-Priorities:DrawText', -1, display);
         end
       end
-      if currentCooldownTime >= 0 then 
+      if currentCooldownTime > 0 then 
         currentCooldownTime = currentCooldownTime - 1;
       end
     end 
