@@ -122,16 +122,16 @@ Citizen.CreateThread(function()
     if inProgress then 
       TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.InProgressDisplay:gsub("{MINS}", currentCooldownTime))
     end
-	end
 
-	if resetPCD then
-    if Config.Options.AlwaysDisplay then
-	    TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.resetDisplay:gsub("{MINS}", currentCooldownTime))
-    else
-      local display = Config.Options.resetDisplay:gsub("{MINS}", currentCooldownTime);
-      TriggerClientEvent('Badger-Priorities:DrawText', -1, "");
-    end 
-  end
+    if resetPCD then
+      if Config.Options.AlwaysDisplay then
+        TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.resetDisplay:gsub("{MINS}", currentCooldownTime))
+      else
+        local display = Config.Options.resetDisplay:gsub("{MINS}", currentCooldownTime);
+        TriggerClientEvent('Badger-Priorities:DrawText', -1, "");
+      end 
+    end
+	end
 end)
 
 Citizen.CreateThread(function()
