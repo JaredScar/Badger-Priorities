@@ -6,6 +6,7 @@ Config = {
 		EnableHoldMessage = true,
 		EnableProgressMessage = true,
 		EnableCooldownMessage = true,
+		CenterText = true,
 		AlwaysDisplay = true, -- Always display the priority cooldown text even with 0 mins left?
 		CooldownDisplay = "~w~Priority Cooldown: ~r~{MINS} ~w~mins",
 		InProgressDisplay = "~w~Priority Cooldown: ~g~Priority in Progress",

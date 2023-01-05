@@ -98,6 +98,7 @@ resetPCD = false
 Citizen.CreateThread(function()
   while true do 
     Wait((1000 * 5));
+
     if not onHold and not inProgress and not resetPCD then 
       if Config.Options.AlwaysDisplay then 
         local display = Config.Options.CooldownDisplay:gsub("{MINS}", currentCooldownTime);
@@ -112,17 +113,25 @@ Citizen.CreateThread(function()
         end
       end
     end 
+
     if onHold and not inProgress and not resetPCD then  
       -- Print on screen, the priorities are on hold 
       TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.OnHoldDisplay:gsub("{MINS}", currentCooldownTime))
-    end 
+    end
+
     if inProgress then 
       TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.InProgressDisplay:gsub("{MINS}", currentCooldownTime))
+    end
+
+    if resetPCD then
+      if Config.Options.AlwaysDisplay then
+        TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.resetDisplay:gsub("{MINS}", currentCooldownTime))
+      else
+        local display = Config.Options.resetDisplay:gsub("{MINS}", currentCooldownTime);
+        TriggerClientEvent('Badger-Priorities:DrawText', -1, "");
+      end 
+    end
 	end
-	if resetPCD then
-	  TriggerClientEvent('Badger-Priorities:DrawText', -1, Config.Options.resetDisplay:gsub("{MINS}", currentCooldownTime))
-    end 
-  end
 end)
 
 Citizen.CreateThread(function()

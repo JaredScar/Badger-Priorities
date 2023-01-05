@@ -23,7 +23,9 @@ function Draw2DText(x, y, text, scale)
     SetTextDropShadow()
     SetTextEdge(4, 0, 0, 0, 255)
     SetTextOutline()
-    SetTextJustification(0)
+	if Config.Options.CenterText then
+    	SetTextJustification(0)
+	end
     SetTextEntry("STRING")
     AddTextComponentString(text)
     DrawText(x, y)
