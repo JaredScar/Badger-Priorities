@@ -134,6 +134,17 @@ Citizen.CreateThread(function()
 	end
 end)
 
+exports('GetPrioStatus', function ()
+  if onHold == true then 
+    priostatus = 'onHold'
+  elseif inProgress == true then
+    priostatus = 'inProgress'
+  else
+    priostatus = currentCooldownTime
+  end
+  return priostatus
+end)
+
 Citizen.CreateThread(function()
   while true do 
     Wait((1000 * 60));
