@@ -10,3 +10,7 @@ server_script "server.lua"
 shared_scripts {
     "config.lua",
 }
+
+exports {
+    "GetPrioStatus"
+}

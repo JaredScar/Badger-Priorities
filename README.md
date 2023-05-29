@@ -67,3 +67,7 @@ Config = {
 	}
 }
 ```
+
+Available Exports;
+
+`exports['Badger-Priorities'].GetPrioStatus()` | Returns the current Priority Status in minutes, onHold or inProgress (Server Side)
